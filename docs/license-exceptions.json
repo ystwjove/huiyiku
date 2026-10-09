@@ -1,0 +1,47 @@
+{
+  "policy": "Default Python/Node dependencies must be MIT, MIT-0, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, or 0BSD. Record every exception here with source, license, and why.",
+  "exceptions": [
+    {
+      "name": "sqlite",
+      "distribution": "CPython stdlib sqlite3 + the official SQLite amalgamation used at runtime",
+      "license": "blessing / public domain",
+      "policy_ref": "2.7.1",
+      "notes": "Not a pip package. At release, record the SQLite version string from the running binary. Do not vendor a GPL sqlite build."
+    },
+    {
+      "name": "certifi",
+      "distribution": "pip transitive dependency of httpx (plan 2.2 HTTP client)",
+      "license": "MPL-2.0",
+      "policy_ref": "2.7.2 inbound exception recorded at repository init",
+      "notes": "MPL-2.0 is file-level copyleft. This project does not modify certifi. Revisit using the OS trust store in a later slice if the whitelist must be strict with no MPL."
+    },
+    {
+      "name": "clr-loader",
+      "distribution": "pip transitive dependency of pythonnet, loaded by pywebview for the native window (WinForms + WebView2 host)",
+      "license": "MIT",
+      "policy_ref": "2.7 default whitelist; distribution metadata omits License-Expression",
+      "notes": "Upstream LICENSE is MIT (github.com/pythonnet/clr-loader). Recorded here only because pip metadata has no license field; the license itself is on the whitelist."
+    },
+    {
+      "name": "soxr",
+      "distribution": "ASR 组件专用（.venv-asr → huiyiku-asr.exe 内的 _internal/soxr/soxr_ext.pyd）；经 librosa 进入 FunASR 运行时路径，不在 UI zip 内",
+      "license": "LGPL-2.1-or-later",
+      "policy_ref": "ASR 侧例外（UI 默认依赖白名单不受影响）",
+      "notes": "LGPL-2.1 §6：以独立可替换模块（soxr_ext.pyd）分发，用户可用自建版本替换以实现重新链接；包内附上游声明与 LGPL-2.1 全文（licenses/python-packages.txt）+ THIRD_PARTY_NOTICES_ASR.md 中的源码获取书面承诺。若日后 UI/ASR 需要严格无 LGPL，替代方案是排除 soxr（会破坏 librosa 的 resample 路径，需先验证 FunASR 推理不需要它）。"
+    },
+    {
+      "name": "tqdm",
+      "distribution": "ASR 组件专用（.venv-asr → huiyiku-asr.exe）",
+      "license": "MPL-2.0 AND MIT",
+      "policy_ref": "ASR 侧例外",
+      "notes": "双许可，取 MIT 分支即可满足；上游 LICENCE 同时列出 MPL-2.0 与 MIT 文本，已随包分发。"
+    },
+    {
+      "name": "certifi (ASR)",
+      "distribution": "ASR 组件专用（.venv-asr → huiyiku-asr.exe），与 UI 侧同一包",
+      "license": "MPL-2.0",
+      "policy_ref": "ASR 侧例外；与 UI 侧 certifi 条目同源",
+      "notes": "同 UI 侧处理：不修改 certifi 源文件，随包保留 MPL 声明。"
+    }
+  ]
+}

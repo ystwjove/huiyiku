@@ -1,0 +1,17 @@
+# ASR component extra. NOT installed by default CI or the UI venv.
+# Used to build huiyiku-asr.exe and for `python -m huiyiku_asr` on a developer machine.
+#
+# Do not copy these names into requirements.lock or requirements-dev.lock.
+# Install into a dedicated interpreter, e.g. .venv-asr.
+#
+# Windows CPU torch:
+#   .venv-asr\Scripts\python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   .venv-asr\Scripts\python -m pip install -r requirements-asr.txt
+#   .venv-asr\Scripts\python -m pip install --no-deps -e .
+#
+funasr==1.4.2
+modelscope==1.39.1
+# Install matching CPU wheels from the pytorch cpu index (not PyPI):
+#   torch==2.13.0+cpu
+#   torchaudio  (required by FunASR AutoModel)
+

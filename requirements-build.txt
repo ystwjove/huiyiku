@@ -1,0 +1,7 @@
+# Windows packaging toolchain. Build machine only.
+# PyInstaller is GPL with a frozen-application exception; it must not appear
+# in requirements.lock (runtime) or be imported by Huiyiku.exe source.
+#
+# If the build toolchain must stay inside the 2.7 license whitelist, replace
+# this file with cx_Freeze (MIT) and keep PyInstaller out of the tree.
+pyinstaller>=6.0,<7

@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.lock
+            requirements-dev.lock
+
+      - name: Install (no ASR extra, no torch)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.lock
+          python -m pip install --no-deps -e .
+
+      - name: Ruff
+        run: python -m ruff check src tests scripts
+
+      - name: Tests
+        run: python -m pytest
+
+      - name: Lockfile gate
+        run: python scripts/check_lockfile.py
+
+      - name: License scan
+        run: python scripts/check_licenses.py
+
+      - name: Notices coverage
+        run: python scripts/check_notices.py
+
+      - name: License texts present
+        run: python scripts/collect_licenses.py --check
+
+      - name: Repo hygiene
+        run: python scripts/check_repo_hygiene.py
+
+  frontend:
+    name: frontend typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Typecheck
+        run: |
+          cd web
+          npm ci
+          npx tsc --noEmit -p tsconfig.json

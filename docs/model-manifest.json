@@ -1,0 +1,100 @@
+{
+  "updated": "2026-09-28",
+  "notes": "Measured on Windows with FunASR 1.4.2 + torch 2.13.0+cpu. Weights load from asr_home/models via MODELSCOPE_CACHE. UI lock files must not include these packages. 2026-09-28: 四个本地模型的许可已通过 ModelScope 模型接口逐一核实为 Apache-2.0（见各条 license_verified）。",
+  "speaker_pipeline": {
+    "direct_speaker_labels": true,
+    "evidence": "AutoModel(paraformer-zh, fsmn-vad, ct-punc, cam++) generate() returns sentence_info[].spk. Mapped to SPEAKER_XX. Official asr_example.wav produced speaker_label=SPEAKER_00 with timestamps. Automatic clustering is FunASR-internal; v1 does not add extra spectral clustering.",
+    "experimental": false
+  },
+  "local": [
+    {
+      "task": "asr",
+      "alias": "paraformer-zh",
+      "execution": "local",
+      "provider": "funasr",
+      "model_id": "iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+      "revision": "v2.0.4",
+      "checksum_sha256": "3d491689244ec5dfbf9170ef3827c358aa10f1f20e42a7c59e15e688647946d1",
+      "file": "model.pt",
+      "bytes": 989763045,
+      "license": "Apache-2.0",
+      "source_url": "https://www.modelscope.cn/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+      "load_from": "asr_home/models",
+      "status": "measured",
+      "license_verified": {
+        "checked_at": "2026-09-28",
+        "source": "https://modelscope.cn/api/v1/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch .Data.License == 'Apache License 2.0'"
+      }
+    },
+    {
+      "task": "vad",
+      "alias": "fsmn-vad",
+      "execution": "local",
+      "provider": "funasr",
+      "model_id": "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+      "revision": "v2.0.4",
+      "checksum_sha256": "b3be75be477f0780277f3bae0fe489f48718f585f3a6e45d7dd1fbb1a4255fc5",
+      "file": "model.pt",
+      "bytes": 1721366,
+      "license": "Apache-2.0",
+      "source_url": "https://www.modelscope.cn/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+      "load_from": "asr_home/models",
+      "status": "measured",
+      "license_verified": {
+        "checked_at": "2026-09-28",
+        "source": "https://modelscope.cn/api/v1/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch .Data.License == 'Apache License 2.0'"
+      }
+    },
+    {
+      "task": "punctuation",
+      "alias": "ct-punc",
+      "execution": "local",
+      "provider": "funasr",
+      "model_id": "iic/punc_ct-transformer_cn-en-common-vocab471067-large",
+      "revision": "v2.0.4",
+      "checksum_sha256": "7176cae922a872e130e6b88aef9a1153581711baf79c9124c7c95be383cd6f81",
+      "file": "model.pt",
+      "bytes": 1125507622,
+      "license": "Apache-2.0",
+      "source_url": "https://www.modelscope.cn/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large",
+      "load_from": "asr_home/models",
+      "status": "measured",
+      "license_verified": {
+        "checked_at": "2026-09-28",
+        "source": "https://modelscope.cn/api/v1/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large .Data.License == 'Apache License 2.0'"
+      }
+    },
+    {
+      "task": "speaker_embedding",
+      "alias": "campplus",
+      "execution": "local",
+      "provider": "funasr",
+      "model_id": "iic/speech_campplus_sv_zh-cn_16k-common",
+      "revision": "v2.0.2",
+      "checksum_sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8",
+      "file": "campplus_cn_common.bin",
+      "bytes": 28036335,
+      "license": "Apache-2.0",
+      "source_url": "https://www.modelscope.cn/models/iic/speech_campplus_sv_zh-cn_16k-common",
+      "load_from": "asr_home/models",
+      "status": "measured",
+      "notes": "Used as FunASR spk_model. Pipeline emits sentence_info.spk; mapped to SPEAKER_XX.",
+      "license_verified": {
+        "checked_at": "2026-09-28",
+        "source": "https://modelscope.cn/api/v1/models/iic/speech_campplus_sv_zh-cn_16k-common .Data.License == 'Apache License 2.0'"
+      }
+    }
+  ],
+  "remote": [
+    {
+      "task": "llm",
+      "execution": "remote",
+      "usage_class": "cloud_byok",
+      "provider": "openai_compatible",
+      "model_name": "",
+      "endpoint": "",
+      "context_length": null,
+      "terms": "User must accept the chosen vendor terms before setting a default. No key is shipped in this repository."
+    }
+  ]
+}

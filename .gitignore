@@ -1,0 +1,73 @@
+# Application config and local data (never commit real instances)
+app.json
+secrets.json
+meeting-data/
+tmp-ui-review/
+/asr/
+.env
+.env.*
+!.env.example
+
+# Media and databases
+*.db
+*.db-wal
+*.db-shm
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.aac
+*.flac
+*.ogg
+*.wma
+*.webm
+*.opus
+
+# Generated products
+transcripts/
+reports/
+exports/
+logs/
+*.md.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.venv/
+.venv-asr/
+venv/
+.env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+/dist/
+/build/
+pip-wheel-metadata/
+
+# Node / frontend (slice 1+)
+node_modules/
+web/dist/
+web/.vite/
+
+# PyInstaller
+*.spec.bak
+/packaging/work/
+/Huiyiku/
+/packaging/dist/
+
+# OS / editors
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+tmp-probe.wav
+中文测试录音.wav
+.zcode/
