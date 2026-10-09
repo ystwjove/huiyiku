@@ -258,7 +258,7 @@ def main() -> int:
     counts: dict[str, int] = {}
     for c in bom["components"]:
         counts[c["type"]] = counts.get(c["type"], 0) + 1
-    print(f"SBOM: {out}（{len(bom['components'])} 个组件）")
+    print(f"SBOM: {out} ({len(bom['components'])} components)")
     return 0
 
 

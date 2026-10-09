@@ -10,6 +10,9 @@ permissions:
 jobs:
   windows-ui:
     runs-on: windows-latest
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     steps:
       - uses: actions/checkout@v4
 
@@ -48,8 +51,11 @@ jobs:
         working-directory: web
 
       - name: Package UI zip
+        shell: pwsh
         run: |
-          python scripts/check_licenses.py
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+          # 许可白名单由 CI 检查。这里不装开发依赖，避免 pytest 被打进 exe。
           python scripts/check_notices.py
           python scripts/collect_licenses.py --check
           python scripts/package_windows.py --ui
