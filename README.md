@@ -4,7 +4,7 @@
 
 Local meeting knowledge base: import recordings, transcribe on-device with FunASR, review speakers, then generate cited reports and Q&A through **your own** cloud LLM key (BYOK). Audio stays on disk by default; this project never proxies your billing.
 
-会议库是单人、本机存储的会议录音知识库，也支持小团队在可信内网共享同一个库（见「内网共享」）。双击 exe 打开独立桌面窗口。转写在本机完成，音频默认不上传。报告、问答和项目摘要会把**转写文本**发到你自己配置的大模型 API。作者不收 Key、不经手录音。
+会议库是单人、本机存储的会议录音知识库，也支持小团队在可信内网共享同一个库（见「内网共享」）。双击 exe 打开独立桌面窗口，界面为中文。转写在本机完成，音频默认不上传。报告、问答和项目摘要会把**转写文本**发到你自己配置的大模型 API。作者不收 Key、不经手录音。
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
@@ -26,7 +26,7 @@ Local meeting knowledge base: import recordings, transcribe on-device with FunAS
 1. 从 GitHub Releases 下载 `huiyiku-windows-x64.zip`，解压后双击 `Huiyiku.exe`。推荐解压到 `%LOCALAPPDATA%\Programs\Huiyiku`，不要留在「下载」后直接当安装目录删掉。
 2. 双击后打开**独立的桌面窗口**（自带标题栏与任务栏图标，不是浏览器标签页）。窗口用系统自带的 WebView2（Edge 内核）渲染；极少数未安装 WebView2 的机器会自动回退为系统浏览器访问 `http://127.0.0.1:8787`。**关闭窗口即退出**（后台服务随之停止）。端口固定 8787，被**其它程序**占用时会报错退出，不要改端口「躲占用」。
 3. **自备 FFmpeg。** 放入 PATH，或放到 exe 同级 `ffmpeg\ffmpeg.exe`。本项目不代为分发 FFmpeg 二进制。官方构建见 [FFmpeg Windows builds](https://www.ffmpeg.org/download.html)。
-4. **要转写再装 ASR 组件。** 下载 `huiyiku-asr-windows-x64.zip`（约数 GB，含 torch），解压到程序目录的 `asr\`（开发时即仓库根目录下的 `asr\`），其中应有 `huiyiku-asr.exe`。源码开发也可在仓库里建 `.venv-asr` 并安装 `requirements-asr.txt`，权重放到 `asr\models\`。
+4. **要转写再装 ASR 组件。** 下载 `huiyiku-asr-windows-x64.zip`（约 319 MB，含 torch，**不含模型权重**），解压到程序目录的 `asr\`（开发时即仓库根目录下的 `asr\`），其中应有 `huiyiku-asr.exe`。第一次转写需要联网，程序按 [`docs/model-manifest.json`](docs/model-manifest.json) 把约 2 GB 权重下载到 `asr\models\`。下完之后，转写不再上传音频，也不再依赖外网。源码开发也可在仓库里建 `.venv-asr` 并安装 `requirements-asr.txt`。
 5. 核对 Release 附带的 `SHA256SUMS`。exe **未做代码签名**，SmartScreen 或杀毒软件可能误报。请以本仓库 Actions 构建的 zip 为准，不要从第三方网盘下载。
 
 录音、数据库、转写和 ASR 组件默认都在程序目录下：`meeting-data\` 与 `asr\`（开发时即仓库根目录；解压 exe 则在 `Huiyiku.exe` 旁）。**不要把 zip 留在「下载」里当安装目录**，删掉解压文件夹会连库和模型一起删掉。

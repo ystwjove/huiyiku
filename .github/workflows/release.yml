@@ -71,7 +71,8 @@ jobs:
             ## 会议库 ${{ github.ref_name }}
 
             - UI：`huiyiku-windows-x64.zip`（无 torch / 无权重 / 无 FFmpeg 二进制 / 无 portable.txt）
-            - ASR：请用本机构建 `python scripts/package_windows.py --asr` 或后续上传 `huiyiku-asr-windows-x64.zip`（约 1–3GB，`licenses/` 与 `THIRD_PARTY_NOTICES_ASR.md` 已由门禁强制随包）
+            - ASR：`huiyiku-asr-windows-x64.zip`（约 319 MB，含 torch，不含模型权重）。解压到程序目录 `asr\`，应看到 `asr\huiyiku-asr.exe`。第一次转写需要联网，按 `docs/model-manifest.json` 下载约 2 GB 权重到 `asr\models\`。
+            - 界面为中文。
             - SBOM：`sbom-huiyiku-<version>.cdx.json`（CycloneDX 1.5，覆盖冻结组件）
             - 自备 [FFmpeg](https://www.ffmpeg.org/download.html)
             - exe **未签名**，SmartScreen 可能拦截。请核对本文件的 SHA256。
