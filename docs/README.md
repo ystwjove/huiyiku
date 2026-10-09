@@ -11,4 +11,4 @@
 | [open-source-compliance-checklist.md](open-source-compliance-checklist.md) | 日常 CI 与发布节点核对表 |
 | [会议智能完整版演进参考.md](会议智能完整版演进参考.md) | 非本版范围：多人/企业/合规增强 |
 
-终端用户看根目录 [README.md](../README.md)，不要从本方案开始。
+终端用户看根目录 [README.md](../README.md)（[English](../README.en.md)），不要从本方案开始。

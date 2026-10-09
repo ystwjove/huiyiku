@@ -1,3 +1,5 @@
+[English](README.en.md) · 中文
+
 # 会议库 / huiyiku
 
 Local meeting knowledge base: import recordings, transcribe on-device with FunASR, review speakers, then generate cited reports and Q&A through **your own** cloud LLM key (BYOK). Audio stays on disk by default; this project never proxies your billing.
